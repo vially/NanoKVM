@@ -1,0 +1,8 @@
+{
+  "name": "NanoKVM",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "postCreateCommand": "ln -s /dev/null /dev/hidg0 && ln -s /dev/null /dev/hidg1 && ln -s /dev/null /dev/hidg2 && echo '0' > /tmp/fake_gpio && mkdir -p /kvmapp/kvm",
+  "mounts": ["type=bind,source=/dev/video2,target=/dev/video2"]
+}

@@ -1,0 +1,13 @@
+proto: http
+port:
+    http: 8080
+    https: 443
+cert:
+    crt: server.crt
+    key: server.key
+logger:
+    level: info
+    file: stdout
+authentication: disable
+secretKey: ""
+videoDevice: /dev/video2
