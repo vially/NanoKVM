@@ -1,12 +1,14 @@
 package config
 
 type Config struct {
-	Proto          string `yaml:"proto"`
-	Port           Port   `yaml:"port"`
-	Cert           Cert   `yaml:"cert"`
-	Logger         Logger `yaml:"logger"`
-	Authentication string `yaml:"authentication"`
-	SecretKey      string `yaml:"secretKey"`
+	Proto                 string `yaml:"proto"`
+	Port                  Port   `yaml:"port"`
+	Cert                  Cert   `yaml:"cert"`
+	Logger                Logger `yaml:"logger"`
+	Authentication        string `yaml:"authentication"`
+	SecretKey             string `yaml:"secretKey"`
+	VideoDevice           string `yaml:"videoDevice"`
+	SkipStreamStartFrames int    `yaml:"skipStreamStartFrames"`
 
 	Hardware Hardware `yaml:"-"`
 }

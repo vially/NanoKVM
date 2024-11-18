@@ -15,4 +15,5 @@ var defaultConfig = &Config{
 		File:  "stdout",
 	},
 	Authentication: "enable",
+	VideoDevice: "/dev/video2",
 }

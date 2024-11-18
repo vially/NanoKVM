@@ -83,6 +83,7 @@ func send() {
 			}
 
 		case <-exitSig:
+			vision.Close()
 			return
 		}
 	}

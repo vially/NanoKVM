@@ -11,3 +11,4 @@ logger:
 authentication: disable
 secretKey: ""
 videoDevice: /dev/video2
+skipStreamStartFrames: 5
