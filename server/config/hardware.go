@@ -7,6 +7,13 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
+var (
+	gpioPowerFileEnvVar    = os.Getenv("GPIO_POWER_FILE")
+	gpioPowerLEDFileEnvVar = os.Getenv("GPIO_POWER_LED_FILE")
+	gpioResetFileEnvVar    = os.Getenv("GPIO_RESET_FILE")
+	gpioHDDLedFileEnvVar   = os.Getenv("GPIO_HDD_LED_FILE")
+)
+
 type HWVersion int
 
 const (
@@ -86,6 +93,22 @@ func getHardware() (h Hardware) {
 	default:
 		h = HWAlpha
 		log.Error("Unsupported hardware version: %s", version)
+	}
+
+	if gpioPowerFileEnvVar != "" {
+		h.GPIOPower = gpioPowerFileEnvVar
+	}
+
+	if gpioPowerLEDFileEnvVar != "" {
+		h.GPIOPowerLED = gpioPowerLEDFileEnvVar
+	}
+
+	if gpioResetFileEnvVar != "" {
+		h.GPIOReset = gpioResetFileEnvVar
+	}
+
+	if gpioHDDLedFileEnvVar != "" {
+		h.GPIOHDDLed = gpioHDDLedFileEnvVar
 	}
 
 	return
