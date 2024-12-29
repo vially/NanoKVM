@@ -92,7 +92,7 @@ func getHardware() (h Hardware) {
 
 	default:
 		h = HWAlpha
-		log.Error("Unsupported hardware version: %s", version)
+		log.Errorf("Unsupported hardware version: %s", version)
 	}
 
 	if gpioPowerFileEnvVar != "" {
