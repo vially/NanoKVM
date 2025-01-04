@@ -1,0 +1,16 @@
+FROM golang:1.23 as builder
+
+COPY . /app
+
+WORKDIR /app
+
+RUN go build
+
+
+FROM debian:bookworm
+
+COPY --from=builder /app/NanoKVM-Server /NanoKVM-Server
+
+RUN mkdir -p /kvmapp/kvm /etc/kvm
+
+ENTRYPOINT ["/NanoKVM-Server"]

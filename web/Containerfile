@@ -1,0 +1,23 @@
+FROM node:22-alpine as builder
+
+WORKDIR /app
+
+COPY . /app
+
+RUN <<EOF
+# Required for building node-gyp dependencies
+apk add python3 make gcc g++ musl-dev
+
+# Install pnpm with corepack
+corepack enable
+corepack prepare pnpm@latest --activate
+
+pnpm install
+
+pnpm run build
+EOF
+
+
+FROM joseluisq/static-web-server:2
+
+COPY --from=builder /app/dist /public
