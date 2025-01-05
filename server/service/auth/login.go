@@ -5,8 +5,6 @@ import (
 	"NanoKVM-Server/middleware"
 	"NanoKVM-Server/proto"
 	"NanoKVM-Server/utils"
-	"fmt"
-	"os"
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
@@ -15,11 +13,6 @@ import (
 func (s *Service) Login(c *gin.Context) {
 	var req proto.LoginReq
 	var rsp proto.Response
-
-	if !isLibExist() {
-		rsp.ErrRsp(c, -6, "Lib not exist! Please connect to internet and update.")
-		return
-	}
 
 	// authentication disabled
 	conf := config.GetInstance()
@@ -63,10 +56,4 @@ func (s *Service) Login(c *gin.Context) {
 	})
 
 	log.Debugf("login success, username: %s", req.Username)
-}
-
-func isLibExist() bool {
-	libPath := fmt.Sprintf("/kvmapp/kvm_system/dl_lib/libmaixcam_lib.so")
-	_, err := os.Stat(libPath)
-	return err == nil
 }
